@@ -35,15 +35,35 @@ impl<T: StepRule> Chess<T>{
     }
 }
 
+trait ChessStyle{
+    type Output; 
+    fn get_self(&self) -> &Self::Output;
+}
+
+impl ChessStyle for Chess<Elephant>{
+    type Output = Elephant;
+
+    fn get_self(&self) -> &Elephant{
+        &self.inner
+    }
+}
+
+impl ChessStyle for Chess<Horse>{
+    type Output = Horse;
+
+    fn get_self(&self) -> &Horse {
+        &self.inner
+    }
+}
 
 fn main(){
     let hor = Horse;
     let ele = Elephant;
 
-    let h_chess = Chess::new(2i32, hor);
-    let e_chess = Chess::new(3i32, ele);    
+    let h_chess = Box::new(Chess::new(2i32, hor)) as Box<ChessStyle>;
+    let e_chess = Box::new(Chess::new(3i32, ele)) as Box<ChessStyle>;
     
-    let map :HashMap<&str, Chess<StepRule>> = HashMap::new();
+    let mut map :HashMap<&str, Box<ChessStyle>> = HashMap::new();
     map.insert("3", h_chess);    
     map.insert("4", e_chess);
 }
