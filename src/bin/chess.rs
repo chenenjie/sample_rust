@@ -43,7 +43,7 @@ trait ChessStyle{
 impl ChessStyle for Chess<Elephant>{
     type Output = Elephant;
 
-    fn get_self(&self) -> &Elephant{
+    fn get_self(&self) -> &Self::Output{
         &self.inner
     }
 }
@@ -51,7 +51,7 @@ impl ChessStyle for Chess<Elephant>{
 impl ChessStyle for Chess<Horse>{
     type Output = Horse;
 
-    fn get_self(&self) -> &Horse {
+    fn get_self(&self) -> &Self::Output{
         &self.inner
     }
 }
