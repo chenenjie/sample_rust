@@ -36,23 +36,12 @@ impl<T: StepRule> Chess<T>{
 }
 
 trait ChessStyle{
-    type Output; 
-    fn get_self(&self) -> &Self::Output;
+    fn get_self(&mut self) -> i32;
 }
 
-impl ChessStyle for Chess<Elephant>{
-    type Output = Elephant;
-
-    fn get_self(&self) -> &Self::Output{
-        &self.inner
-    }
-}
-
-impl ChessStyle for Chess<Horse>{
-    type Output = Horse;
-
-    fn get_self(&self) -> &Self::Output{
-        &self.inner
+impl<T: StepRule> ChessStyle for Chess<T>{
+    fn get_self(&mut self) -> i32{
+        32i32
     }
 }
 
