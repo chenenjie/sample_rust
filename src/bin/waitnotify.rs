@@ -1,9 +1,9 @@
 
-use std::sync::{Arc, Mutex, Condva};
+use std::sync::{Arc, Mutex, Condvar};
 use std::thread;
 
 fn main() {
-    let pair = Arc::new((Mutex::new(false), Condva::new()));
+    let pair = Arc::new((Mutex::new(false), Condvar::new()));
     let pair2 = pair.clone();
 
     thread::spawn(move || {
@@ -11,7 +11,7 @@ fn main() {
         let mut started = lock.lock().unwrap();
 
         *started = true;
-        cvar.notiry_one();
+        cvar.notify_one();
         println!("notify main thread");
     });
 
