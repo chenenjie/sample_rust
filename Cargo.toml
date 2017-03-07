@@ -23,4 +23,7 @@ serde = "0.9.5"
 tempdir = "0.3.5"
 toml = "0.2.1"
 url = "1.4.0"
+env_logger = "*"
+serde_derive = "0.9"
+serde_json = "0.9"
 
