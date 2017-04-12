@@ -26,4 +26,5 @@ url = "1.4.0"
 env_logger = "*"
 serde_derive = "0.9"
 serde_json = "0.9"
-
+num_cpus = "*"
+threadpool = "*"
